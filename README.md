@@ -6,7 +6,7 @@ A single page web application that lists the number of occurences for each input
 **Backend**: Python - Flask
 
 # How to run locally
-Requires updated version of React Flask
+Requires updated versions of [React](https://reactjs.org) and [Flask](https://flask.palletsprojects.com/en/2.1.x/installation/)
 1) Start API server:
 
     ```
