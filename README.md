@@ -16,7 +16,7 @@ Requires updated version of React Flask
 
 2) Run the frontend React app in the development mode:
     ```
-    cd frontend
+    cd frontend/client
     npm start
     ```
     Open [http://localhost:3000](http://localhost:3000) to view React application in your browser.
