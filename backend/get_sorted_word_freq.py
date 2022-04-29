@@ -1,27 +1,41 @@
 from collections import defaultdict
+import re
 
+# Returns a dictionary of words in str mapping to their number of occurrences in descending order
 def getSortedWordFrequency(str):
-    wordToCount = defaultdict(int)
-    countToWords = defaultdict(set)
+    wordToCount = defaultdict(int)  # maps each word in str to its number of occurences
+    countToWords = defaultdict(set) # maps each occurence number to the set of words in str with that number of occurrences
 
-    for word in str.split():
+    # Remove all punctuation marks and leaves only word chars, spaces, and hyphens with regex
+    cleanedStr = re.sub(r'[^\w\s\-]', '', str) 
+
+    # Iterate through each word in str
+    # Note: Hyphenated words such as "ten-year-old" are considered to be 1 word
+    for word in cleanedStr.split():
+        # If first occurence of word, add it to the set of words corresponding to occurence number of 1
         if word not in wordToCount:
-            wordToCount[word] += 1
             countToWords[1].add(word)
+
+        # Else move the word to the set that corresponds to an occurence count that's 1 greater
         else:
             prev_count = wordToCount[word]
-            wordToCount[word] += 1
             countToWords[prev_count].remove(word)
             countToWords[prev_count+1].add(word)
+        
+        wordToCount[word] += 1
 
+    result = dict()
     # countToWords' keys are already sorted in incrementing order b/c
     # standard dict type maintains insertion order by default
     for count in reversed(list(countToWords.keys())):
         for word in countToWords[count]:
-            print(word, count)
+            result[word] = count
+
+    return result
     
 if __name__ == '__main__':
-    inputs = ['hello', 'hi there!', 'this is a test of the emergency broadcast system this is only a test dog dog dog']
+    inputs = ['hello', 'hi there!', 'this is a test of the emergency broadcast system. this is only a test dog dog dog']
+    # inputs = ['hello!', 'my, name. is, chill-cdc. my name is linh']
     for i in inputs:
-        getSortedWordFrequency(i)
+        print(getSortedWordFrequency(i))
         print()
