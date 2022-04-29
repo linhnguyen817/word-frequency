@@ -18,11 +18,13 @@ function App() {
     formdata.append("str", textInput);
     
     axios({
-      method: "get",
-      url: apiUrl,
-      data: JSON.stringify({str: textInput}),
+      method: "post",
       headers: {
         'Content-Type': 'application/json'
+      },
+      url: apiUrl,
+      data: {
+        str: textInput
       }
     })
     .then(res => {
@@ -46,12 +48,11 @@ function App() {
         </form>
         <div>
           {Object.keys(result).map((key, i) => (
-          <p key={i}>
-            <span>{key} </span>
-            <span>{result[key]}</span>
-          </p>
-        ))}
-          {/* <p>{result.linh}</p> */}
+            <p key={i}>
+              <span>{key} </span>
+              <span>{result[key]}</span>
+            </p>
+          ))}
         </div>
       </header>
     </div>
