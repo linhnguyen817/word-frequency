@@ -16,9 +16,10 @@ def apiCalculateWordFrequency():
         str = request.json['str']
         print("Input text: ", str)
     except:
-        return "Error: No valid string input provided."
+        return "Error: Unable to parse input.", 500
 
-    print("Input text: ", str)
+    if not str:
+        return "Error: No text input given.", 400
     res = getSortedWordFrequency(str)
     print("Result: ", res)
     return jsonify(res)

@@ -6,17 +6,11 @@ const apiUrl = "http://localhost:5000/api/v1/get-sorted-word-frequency"
 function App() {
   const [textInput, setTextInput] = useState("");
   const [result, setResult] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const params = {
-    //   str: textInput
-    // };
-    
-    var formdata = new FormData();
-    //add three variable to form
-    formdata.append("str", textInput);
-    
+
     axios({
       method: "post",
       headers: {
@@ -29,8 +23,13 @@ function App() {
     })
     .then(res => {
       setResult(res.data);
+      setErrorMessage("")
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err.response.data);
+      setErrorMessage(err.response.data);
+      setResult([]);
+    });
   };
 
   return (
@@ -45,13 +44,14 @@ function App() {
           <input type="submit" />
         </form>
         <div className="word-list">
-          {Object.keys(result).map((key, i) => (
+          {result && Object.keys(result).map((key, i) => (
             <p key={i}>
               <span>{key} </span>
               <span>{result[key]}</span>
             </p>
           ))}
         </div>
+        {errorMessage && <p className='error-message'>{errorMessage}</p>}
     </div>
   );
 }

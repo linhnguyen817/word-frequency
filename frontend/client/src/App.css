@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #121212;
+  background-color: #252527;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,4 +12,9 @@
 .word-list {
   padding: 5px 15%;
   text-align: left;
+}
+
+.error-message {
+  color: red;
+  font-size: calc(10px + 1vmin);
 }
