@@ -3,10 +3,14 @@ import re
 
 # Returns a dictionary of words in str mapping to their number of occurrences in descending order
 def getSortedWordFrequency(str):
+    result = dict()
+    if not str:
+        return result
+
     wordToCount = defaultdict(int)  # maps each word in str to its number of occurences
     countToWords = defaultdict(set) # maps each occurence number to the set of words in str with that number of occurrences
 
-    # Remove all punctuation marks and leaves only word chars, spaces, and hyphens with regex
+    # Remove all punctuation marks and leave only word chars, spaces, and hyphens with regex
     cleanedStr = re.sub(r'[^\w\s\-]', '', str) 
 
     # Iterate through each word in str
@@ -24,7 +28,6 @@ def getSortedWordFrequency(str):
         
         wordToCount[word] += 1
 
-    result = dict()
     # countToWords' keys are already sorted in incrementing order b/c
     # standard dict type maintains insertion order by default
     for count in reversed(list(countToWords.keys())):
@@ -33,9 +36,10 @@ def getSortedWordFrequency(str):
 
     return result
     
+# Main used for local testing
 if __name__ == '__main__':
     inputs = ['hello', 'hi there!', 'this is a test of the emergency broadcast system. this is only a test dog dog dog']
-    # inputs = ['hello!', 'my, name. is, chill-cdc. my name is linh']
+    # inputs = ['hello!', 'my, name. is, linh-nguyen. my name is linh']
     for i in inputs:
         print(getSortedWordFrequency(i))
         print()
