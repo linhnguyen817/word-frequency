@@ -10,7 +10,7 @@ def getSortedWordFrequency(str):
     wordToCount = defaultdict(int)  # maps each word in str to its number of occurences
     countToWords = defaultdict(set) # maps each occurence number to the set of words in str with that number of occurrences
 
-    # Remove all punctuation marks and leave only word chars, spaces, and hyphens with regex
+    # Remove all punctuation marks and leave only numbers, alphabetical chars, spaces, and hyphens with regex
     cleanedStr = re.sub(r'[^\w\s\-]', '', str) 
 
     # Iterate through each word in str

@@ -35,18 +35,16 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
         <form onSubmit={handleSubmit}>
-          <label> Enter your amazing text! 🦄
-            <input 
-              type="text"
-              value={textInput}
-              onChange={(e) => setTextInput(e.target.value)}
-            />
-          </label>
+          <h3> Enter your amazing text! 🦄 </h3>
+          <input 
+            type="text"
+            value={textInput}
+            onChange={(e) => setTextInput(e.target.value)}
+          />
           <input type="submit" />
         </form>
-        <div>
+        <div className="word-list">
           {Object.keys(result).map((key, i) => (
             <p key={i}>
               <span>{key} </span>
@@ -54,7 +52,6 @@ function App() {
             </p>
           ))}
         </div>
-      </header>
     </div>
   );
 }

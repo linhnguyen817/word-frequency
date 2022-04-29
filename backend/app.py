@@ -1,7 +1,6 @@
 from urllib import request
-# import flask
 from flask import Flask, request, jsonify
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from get_sorted_word_freq import getSortedWordFrequency
 
 app = Flask(__name__)
